@@ -1,20 +1,27 @@
 import numpy as np
 
+
+
 class agent:
     def __init__(self):
        self.matrice = np.zeros((8,8))
        #print(self.matrice)
        
 
-       self.matrice[0][2] = True;
-       self.matrice[0][3] = True;
+       self.matrice[0][2] = 1;
+       self.matrice[0][3] = 1;
+
 
     def modify_r(self,step):
-        self.matrice[step%4 + 4][step%4 + 4] = True;
+
+        self.matrice[step%5 + 3][step%5 +3] = 1
 
         for i in range(5):
-            if i != step%5:
-                self.matrice[4 + i][4 + i] = False
+            if 3 + i != step%5 + 3:
+                self.matrice[3 + i][3 + i] = 0
+
+            
+
             
 
     def modify_e(self, b):
@@ -25,6 +32,9 @@ class agent:
 
 mathieu = agent()
 
-mathieu.modify_r(3)
+pas_maximum = 11
 
-print(mathieu.matrice)
+for i in range(1,pas_maximum):
+    mathieu.modify_r(i)
+    print("--------------------")
+    print(mathieu.matrice)
